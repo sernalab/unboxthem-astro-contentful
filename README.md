@@ -1,6 +1,6 @@
 # unboxthem-contenful-cms
 
-## 🚀 Getting started
+## 🚀 Getting started!
 
 | Command           | Action                                       |
 | :---------------- | :------------------------------------------- |
