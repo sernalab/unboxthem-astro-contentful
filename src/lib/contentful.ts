@@ -2,7 +2,7 @@ import contentful from "contentful";
 import type { EntryFieldTypes } from 'contentful';
 
 
-interface AuthorFields {
+export interface AuthorFields {
   contentTypeId: "author"
   fields: {
     name: EntryFieldTypes.Text,
@@ -18,7 +18,7 @@ interface AuthorFields {
   }
 }
 
-interface Posts {
+export interface Posts {
   contentTypeId: "post",
   fields: {
     title: EntryFieldTypes.Text,
