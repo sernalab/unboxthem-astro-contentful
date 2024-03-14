@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { contentfulClient } from "../../lib/contentful";
+import type { Posts } from "../../lib/contentful";
+
+const entries = await contentfulClient.getEntries<Posts>({
+  content_type: "post",
+});
+---
+
+<Layout title="Posts">
+  <div class="text-white">
+    {
+      entries.items.map((item) => (
+        <ul>
+          <li>{item.fields.title}</li>
+        </ul>
+      ))
+    }
+  </div>
+</Layout>
