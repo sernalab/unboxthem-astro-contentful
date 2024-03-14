@@ -1,6 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+
+import { contentfulClient } from "../lib/contentful";
+import type { Posts } from "contentful";
+
+const entries = await contentfulClient.getEntries<Posts>({
+  content_type: "post",
+});
 ---
 
 <Layout title="Welcome to Unboxthem.">
@@ -11,6 +18,13 @@ import Card from "../components/Card.astro";
       />
       <strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
     </p>
+    {
+      entries.items.map((item) => (
+        <ul>
+          <li>{item.fields.title}</li>
+        </ul>
+      ))
+    }
     <ul role="list" class="link-card-grid">
       <Card
         href="https://docs.astro.build/"

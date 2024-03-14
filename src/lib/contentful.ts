@@ -1,4 +1,6 @@
-import contentful, {EntryFieldTypes} from "contentful";
+import contentful from "contentful";
+import type { EntryFieldTypes } from 'contentful';
+
 
 interface AuthorFields {
   contentTypeId: "author"
