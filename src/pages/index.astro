@@ -1,5 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
+// import Layout from "../layouts/Layout.astro";
+import EarlyAccessLayout from "../layouts/EarlyAccessLayout.astro";
 import Card from "../components/Card.astro";
 
 import { contentfulClient } from "../lib/contentful";
@@ -10,7 +11,7 @@ const entries = await contentfulClient.getEntries<Posts>({
 });
 ---
 
-<Layout title="Welcome to Unboxthem.">
+<EarlyAccessLayout title="Welcome to Unboxthem.">
   <main>
     <h1>Welcome to <span class="text-gradient">Astro</span></h1>
     <p class="instructions">
@@ -48,7 +49,7 @@ const entries = await contentfulClient.getEntries<Posts>({
       />
     </ul>
   </main>
-</Layout>
+</EarlyAccessLayout>
 
 <style>
   main {
