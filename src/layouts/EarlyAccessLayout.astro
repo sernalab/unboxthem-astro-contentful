@@ -26,12 +26,12 @@ const { title } = Astro.props;
   </head>
   <body>
     <EarlyAccessHeader />
-    <HeroLaunch />
     <slot />
-  </body><style is:global>
-    html {
-      font-family: system-ui, sans-serif;
-      background: #13151a;
-    }
-  </style>
+    <style is:global>
+      html {
+        font-family: system-ui, sans-serif;
+        background: #13151a;
+      }
+    </style>
+  </body>
 </html>

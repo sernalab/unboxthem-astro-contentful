@@ -1,33 +1,18 @@
 ---
 import EarlyAccessLayout from "../layouts/EarlyAccessLayout.astro";
+import HeroLaunch from "../components/HeroLaunch.astro";
 import Layout from "../layouts/Layout.astro";
 import OldCard from "../components/OldCard.astro";
 ---
 
 <!-- <Layout title="Welcome to Unboxthem."> -->
 <EarlyAccessLayout title="Welcome to Unboxthem.">
-  <main></main>
+  <main>
+    <HeroLaunch />
+  </main>
 </EarlyAccessLayout>
 <!-- </Layout> -->
 <style>
-  main {
-    margin: auto;
-    padding: 1rem;
-    width: 800px;
-    max-width: calc(100% - 2rem);
-    color: white;
-    font-size: 20px;
-    line-height: 1.6;
-  }
-  .astro-a {
-    position: absolute;
-    top: -32px;
-    left: 50%;
-    transform: translatex(-50%);
-    width: 220px;
-    height: auto;
-    z-index: -1;
-  }
   h1 {
     font-size: 4rem;
     font-weight: 700;
