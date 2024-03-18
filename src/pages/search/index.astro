@@ -1,0 +1,15 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { contentfulClient } from "../../lib/contentful";
+import type { AuthorFields } from "../../lib/contentful";
+
+const entries = await contentfulClient.getEntries<AuthorFields>({
+  content_type: "author",
+});
+---
+
+<Layout title="Authors">
+  <section class="search container mx-auto min-w-12">
+    <h2 class="text-white">Search</h2>
+  </section>
+</Layout>

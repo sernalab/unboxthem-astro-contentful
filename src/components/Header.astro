@@ -1,25 +1,28 @@
 ---
 import logo from "../assets/img/logo.png";
+
+import HeaderLink from "./HeaderLink.astro";
+import Image from "astro/components/Image.astro";
 ---
 
 <header class="px-4 shadow-black text-white">
   <nav class="flex items-center justify-between">
-    <h2><a href="/">Unboxthem</a></h2>
+    <Image src={logo} alt="Unboxthem" width="30" height="37" />
+
     <div class="internal-links">
-      <a
-        class="py-4 px-2 no-underline border-b-4 border-b-[var(--secondary-100)] active:border-b-white"
-        href="/">Home</a
+      <HeaderLink class="py-5 px-2 no-underline" href="/">Home</HeaderLink>
+      <HeaderLink class="py-5 px-2 no-underline" href="/stories"
+        >Stories</HeaderLink
       >
-      <a class="py-4 px-2 no-underline" href="/posts">Posts</a>
-      <a class="py-4 px-2 no-underline" href="/">Authors</a>
-      <a class="py-4 px-2 no-underline" href="/">Send your story</a>
+      <HeaderLink class="py-5 px-2 no-underline" href="/authors"
+        >Authors</HeaderLink
+      >
+      <HeaderLink class="py-5 px-2 no-underline" href="/send"
+        >Send your story</HeaderLink
+      >
     </div>
     <div class="social-links flex">
-      <a
-        class="py-4 px-2"
-        href="https://twitter.com/astrodotbuild"
-        target="_blank"
-      >
+      <a class="py-4 px-2" href="https://twitter.com/unboxthem" target="_blank">
         <svg
           width="24"
           height="24"
@@ -35,7 +38,8 @@ import logo from "../assets/img/logo.png";
             d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg
         >
       </a>
-      <a class="py-4 px-2" href="">
+
+      <a class="py-4 px-2" href="/search">
         <svg
           width="24"
           height="24"

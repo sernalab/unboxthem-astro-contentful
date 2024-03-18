@@ -1,15 +1,17 @@
 ---
+import logo from "../assets/img/logo.png";
+
 import HeaderLink from "./HeaderLink.astro";
+import Image from "astro/components/Image.astro";
 ---
 
 <header class="px-4 shadow-black text-white">
   <nav class="flex items-center justify-between">
-    <h2><a href="/">Unboxthem</a></h2>
+    <Image src={logo} alt="Unboxthem" width="30" height="37" />
+
     <div class="internal-links">
-      <HeaderLink class="py-4 px-2 no-underline border-b-4" href="/"
-        >Home</HeaderLink
-      >
-      <HeaderLink class="py-4 px-2 no-underline" href="/send"
+      <HeaderLink class="py-5 px-2 no-underline" href="/">Home</HeaderLink>
+      <HeaderLink class="py-5 px-2 no-underline" href="/send"
         >Send your story</HeaderLink
       >
     </div>
