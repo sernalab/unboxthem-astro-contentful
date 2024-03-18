@@ -1,16 +1,17 @@
 ---
-
+import HeaderLink from "./HeaderLink.astro";
 ---
 
 <header class="px-4 shadow-black text-white">
   <nav class="flex items-center justify-between">
     <h2><a href="/">Unboxthem</a></h2>
     <div class="internal-links">
-      <a
-        class="py-4 px-2 no-underline border-b-4 border-b-[var(--secondary-100)] active:border-b-white"
-        href="/">Home</a
+      <HeaderLink class="py-4 px-2 no-underline border-b-4" href="/"
+        >Home</HeaderLink
       >
-      <a class="py-4 px-2 no-underline" href="/send">Send your story</a>
+      <HeaderLink class="py-4 px-2 no-underline" href="/send"
+        >Send your story</HeaderLink
+      >
     </div>
     <div class="social-links flex">
       <a
