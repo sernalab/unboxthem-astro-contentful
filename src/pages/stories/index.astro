@@ -13,8 +13,19 @@ const entries = await contentfulClient.getEntries<Posts>({
 <Layout title="Posts">
   <section class="my-24">
     <div class="container mx-auto min-w-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {entries.items.map((item) => <CardStories title={item.fields.title} />)}
+      <h1 class="text-gray-400 text-7xl mb-5">Trends</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          entries.items.map((item) => (
+            <CardStories
+              title={item.fields.title}
+              author={item.fields.author.fields.name}
+              description={item.fields.description}
+              slug={item.fields.slug}
+            />
+          ))
+        }
       </div>
     </div>
   </section>
