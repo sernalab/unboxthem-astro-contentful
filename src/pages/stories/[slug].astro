@@ -1,0 +1,40 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+import { contentfulClient } from "../../lib/contentful";
+
+async function getPostBySlug(slug) {
+  const entries = await contentfulClient.getEntries({
+    content_type: "post",
+    'fields.slug': slug,
+    limit: 1,
+  });
+
+  return entries.items.length > 0 ? entries.items[0] : null;
+}
+
+const { slug } = Astro.params;
+const post = await getPostBySlug(slug);
+
+---
+
+<Layout title="Posts">
+  <section class="my-24">
+    <div class="container mx-auto min-w-12">
+      <h1 class="text-gray-400 text-7xl mb-5">Trends</h1>
+      <p class="text-white">POSTS {post.fields.title}</p>
+      {post ? (
+        <article>
+          <h1 class="text-gray-400 text-7xl mb-5">{post.fields.title}</h1>
+          <div class="text-white">
+            <p>Author: {post.fields.author.fields.name}</p>
+            <p>Description: {post.fields.body}</p>
+            <!-- Y cualquier otro campo que desees mostrar -->
+          </div>
+        </article>
+      ) : (
+        <p class="text-white">Post not found</p>
+      )}
+    </div>
+  </section>
+</Layout>
