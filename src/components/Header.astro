@@ -10,15 +10,21 @@ import Image from "astro/components/Image.astro";
     <Image src={logo} alt="Unboxthem" width="30" height="37" />
 
     <div class="internal-links">
-      <HeaderLink class="py-5 px-2 no-underline" href="/">Home</HeaderLink>
-      <HeaderLink class="py-5 px-2 no-underline" href="/stories"
-        >Stories</HeaderLink
+      <HeaderLink
+        class="py-5 px-2 no-underline hover:border-b-[var(--secondary-100)]"
+        href="/">Home</HeaderLink
       >
-      <HeaderLink class="py-5 px-2 no-underline" href="/authors"
-        >Authors</HeaderLink
+      <HeaderLink
+        class="py-5 px-2 no-underline hover:border-b-[var(--secondary-100)]"
+        href="/stories">Stories</HeaderLink
       >
-      <HeaderLink class="py-5 px-2 no-underline" href="/send"
-        >Send your story</HeaderLink
+      <HeaderLink
+        class="py-5 px-2 no-underline hover:border-b-[var(--secondary-100)]"
+        href="/authors">Authors</HeaderLink
+      >
+      <HeaderLink
+        class="py-5 px-2 no-underline hover:border-b-[var(--secondary-100)]"
+        href="/send">Send your story</HeaderLink
       >
     </div>
     <div class="social-links flex">
