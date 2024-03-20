@@ -20,7 +20,8 @@ const entries = await contentfulClient.getEntries<Posts>({
           entries.items.map((item) => (
             <CardStories
               title={item.fields.title}
-              author={item.fields.author.fields.name}
+              author={item.fields.author.fields?.name}
+              image={item.fields.heroImage.fields.file.url}
               description={item.fields.description}
               slug={item.fields.slug}
             />

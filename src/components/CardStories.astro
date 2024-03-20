@@ -1,14 +1,11 @@
 ---
-const { title, author, description, slug } = Astro.props;
+const { title, author, description, slug, image } = Astro.props;
 ---
 
 <a href={`/stories/${slug}`}>
   <article class="card bg-base-100 shadow-xl">
     <figure>
-      <img
-        src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-        alt="Shoes"
-      />
+      <img class="aspect-video object-cover" src={image} alt="Shoes" />
     </figure>
     <div class="text-white bg-white p-3">
       <p class="text-4xl text-[var(--secondary-100)]">
