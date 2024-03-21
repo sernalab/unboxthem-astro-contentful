@@ -6,7 +6,7 @@ import { contentfulClient } from "../../lib/contentful";
 async function getPostBySlug(slug) {
   const entries = await contentfulClient.getEntries({
     content_type: "post",
-    'fields.slug': slug,
+    "fields.slug": slug,
     limit: 1,
   });
 
@@ -15,26 +15,35 @@ async function getPostBySlug(slug) {
 
 const { slug } = Astro.params;
 const post = await getPostBySlug(slug);
-
 ---
 
 <Layout title="Posts">
   <section class="my-24">
-    <div class="container mx-auto min-w-12">
-      <h1 class="text-gray-400 text-7xl mb-5">Trends</h1>
-      <p class="text-white">POSTS {post.fields.title}</p>
-      {post ? (
-        <article>
-          <h1 class="text-gray-400 text-7xl mb-5">{post.fields.title}</h1>
-          <div class="text-white">
-            <p>Author: {post.fields.author.fields.name}</p>
-            <p>Description: {post.fields.body}</p>
-            <!-- Y cualquier otro campo que desees mostrar -->
-          </div>
-        </article>
-      ) : (
-        <p class="text-white">Post not found</p>
-      )}
+    <div class="container mx-auto px-4 md:px-12 lg:px-24 xl:px-48">
+      <figure class="">
+        <img
+          class="rounded-xl mx-auto aspect-video object-cover"
+          src={post?.fields.heroImage.fields.file.url}
+          alt=""
+        />
+        <figcaption class="text-white">Credits: @pepito</figcaption>
+      </figure>
+      <div class="mx-auto px-4 md:px-6 lg:px-12 xl:px-24">
+        {
+          post ? (
+            <div>
+              <h1 class="text-gray-400 text-7xl mt-7">{post.fields.title}</h1>
+              <div class="text-white">
+                <p class="my-10">{post.fields.body}</p>
+                <p>Author: {post.fields.author.fields.name}</p>
+              </div>
+            </div>
+          ) : (
+            <p class="text-white">Post not found</p>
+          )
+        }
+        <div class="text-white">Share</div>
+      </div>
     </div>
   </section>
 </Layout>
