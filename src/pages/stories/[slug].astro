@@ -26,7 +26,7 @@ const post = await getPostBySlug(slug);
           src={post?.fields.heroImage.fields.file.url}
           alt=""
         />
-        <figcaption class="text-white">Credits: @pepito</figcaption>
+        <figcaption class="text-white pt-2">Credits: @pepito</figcaption>
       </figure>
       <div class="mx-auto px-4 md:px-6 lg:px-12 xl:px-24">
         {
@@ -34,7 +34,7 @@ const post = await getPostBySlug(slug);
             <div>
               <h1 class="text-gray-400 text-7xl mt-7">{post.fields.title}</h1>
               <div class="text-white">
-                <p class="my-10">{post.fields.body}</p>
+                <p class="my-10 tracking-wide leading-7">{post.fields.body}</p>
                 <p>Author: {post.fields.author.fields.name}</p>
               </div>
             </div>
