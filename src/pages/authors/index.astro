@@ -9,13 +9,54 @@ const entries = await contentfulClient.getEntries<AuthorFields>({
 ---
 
 <Layout title="Authors">
-  <div class="text-white">
-    {
-      entries.items.map((item) => (
-        <ul>
-          <li>{item.fields.name}</li>
-        </ul>
-      ))
-    }
-  </div>
+  <section class="my-24">
+    <div class="container mx-auto min-w-12 relative">
+      <h1 class="text-gray-400 text-7xl mb-5">Performers</h1>
+      <div class="clear-both relative">
+        <div
+          class="grid flex-wrap items-start grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 portfolio gap-8"
+        >
+          {
+            entries.items.map((item) => (
+              <figure class="shrink-0 w-full relative bg-white">
+                <div class="relative">
+                  <a
+                    href="/project/handbag-logo"
+                    class="no-underline relative block"
+                    aria-label="Handbag logo"
+                  >
+                    <span class="relative block transition duration-500 ease-in-out transform rounded hover:scale-105">
+                      <img
+                        src={item.fields.potrait.fields.file.url}
+                        class="relative block object-contain object-center w-full h-full"
+                        loading="lazy"
+                        alt="Handbag logo"
+                        width="384"
+                        height="672"
+                        decoding="async"
+                      />
+                    </span>
+                  </a>
+                </div>
+                <div class="p-5">
+                  <h3 class="text-black text-xl">
+                    <a
+                      href="/project/handbag-logo"
+                      class="no-underline relative inline-block"
+                      aria-label="Handbag logo"
+                    >
+                      {item.fields.name}
+                    </a>
+                  </h3>
+                  <p class="text-sm mt-3 text-[var(--secondary-100)] relative">
+                    Branding, Design
+                  </p>
+                </div>
+              </figure>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
