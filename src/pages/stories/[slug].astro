@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import ShareComponent from "../../components/ShareComponent.astro";
 
 import { contentfulClient } from "../../lib/contentful";
 
@@ -35,14 +36,19 @@ const post = await getPostBySlug(slug);
               <h1 class="text-gray-400 text-7xl mt-7">{post.fields.title}</h1>
               <div class="text-white">
                 <p class="my-10 tracking-wide leading-7">{post.fields.body}</p>
-                <p>Author: {post.fields.author.fields.name}</p>
+                <a
+                  href={`/authors/${post.fields.author.fields.slug}`}
+                  class="text-[var(--secondary-100)] text-4xl"
+                >
+                  {post.fields.author.fields.name}
+                </a>
               </div>
             </div>
           ) : (
             <p class="text-white">Post not found</p>
           )
         }
-        <div class="text-white">Share</div>
+        <ShareComponent />
       </div>
     </div>
   </section>

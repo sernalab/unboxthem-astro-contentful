@@ -1,0 +1,34 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { contentfulClient } from "../../lib/contentful";
+import type { AuthorFields } from "../../lib/contentful";
+
+async function getAuthorBySlug(slug) {
+  const entries = await contentfulClient.getEntries({
+    content_type: "author",
+    "fields.slug": slug,
+    limit: 1,
+  });
+
+  return entries.items.length > 0 ? entries.items[0] : null;
+}
+
+const { slug } = Astro.params;
+const author = await getAuthorBySlug(slug);
+---
+
+<Layout title={author ? author.fields.name : "Author not found"}>
+  <section class="my-24">
+    <div class="container mx-auto px-4 md:px-12 lg:px-24 xl:px-48">
+      {
+        author ? (
+          <div>
+            <h1 class="text-gray-400 text-7xl mt-7">{author.fields.name}</h1>
+          </div>
+        ) : (
+          <p class="text-white">Author not found</p>
+        )
+      }
+    </div>
+  </section>
+</Layout>
