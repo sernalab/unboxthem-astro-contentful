@@ -6,6 +6,8 @@ import type { AuthorFields } from "../../lib/contentful";
 const entries = await contentfulClient.getEntries<AuthorFields>({
   content_type: "author",
 });
+
+entries.items.forEach((item) => console.log(item.fields));
 ---
 
 <Layout title="Authors">
@@ -21,7 +23,7 @@ const entries = await contentfulClient.getEntries<AuthorFields>({
               <figure class="shrink-0 w-full relative bg-white">
                 <div class="relative">
                   <a
-                    href="/project/handbag-logo"
+                    href={`authors/${item.fields.slug}`}
                     class="no-underline relative block"
                     aria-label="Handbag logo"
                   >
@@ -41,7 +43,7 @@ const entries = await contentfulClient.getEntries<AuthorFields>({
                 <div class="p-5">
                   <h3 class="text-black text-xl">
                     <a
-                      href="/project/handbag-logo"
+                      href={`authors/${item.fields.slug}`}
                       class="no-underline relative inline-block"
                       aria-label="Handbag logo"
                     >
