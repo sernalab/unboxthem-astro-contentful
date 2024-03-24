@@ -1,4 +1,5 @@
 ---
+import ShareComponent from "../../components/ShareComponent.astro";
 import Layout from "../../layouts/Layout.astro";
 import { contentfulClient } from "../../lib/contentful";
 import type { AuthorFields } from "../../lib/contentful";
@@ -15,15 +16,25 @@ async function getAuthorBySlug(slug) {
 
 const { slug } = Astro.params;
 const author = await getAuthorBySlug(slug);
+
+console.log(author?.fields.potrait.fields);
 ---
 
 <Layout title={author ? author.fields.name : "Author not found"}>
   <section class="my-24">
-    <div class="container mx-auto px-4 md:px-12 lg:px-24 xl:px-48">
+    <div
+      class="container mx-auto px-4 md:px-12 lg:px-24 xl:px-48 flex justify-center"
+    >
       {
         author ? (
-          <div>
+          <div class="author-details ">
+            <img
+              class="h-96 w-96 object-cover rounded-full"
+              src={author.fields.potrait.fields.file.url}
+              alt=""
+            />
             <h1 class="text-gray-400 text-7xl mt-7">{author.fields.name}</h1>
+            <ShareComponent />
           </div>
         ) : (
           <p class="text-white">Author not found</p>
