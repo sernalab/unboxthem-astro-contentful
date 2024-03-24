@@ -2,7 +2,6 @@
 import ShareComponent from "../../components/ShareComponent.astro";
 import Layout from "../../layouts/Layout.astro";
 import { contentfulClient } from "../../lib/contentful";
-import type { AuthorFields } from "../../lib/contentful";
 
 async function getAuthorBySlug(slug) {
   const entries = await contentfulClient.getEntries({
@@ -14,32 +13,69 @@ async function getAuthorBySlug(slug) {
   return entries.items.length > 0 ? entries.items[0] : null;
 }
 
+async function getPostsByAuthorId(authorId) {
+  const entries = await contentfulClient.getEntries({
+    content_type: "post",
+    "fields.author.sys.id": authorId,
+  });
+
+  return entries.items;
+}
+
 const { slug } = Astro.params;
 const author = await getAuthorBySlug(slug);
+const posts = await getPostsByAuthorId(author?.sys.id);
 
-console.log(author?.fields.potrait.fields);
+// console.log(author?.fields);
+console.log("posts fields", posts);
 ---
 
 <Layout title={author ? author.fields.name : "Author not found"}>
   <section class="my-24">
     <div
-      class="container mx-auto px-4 md:px-12 lg:px-24 xl:px-48 flex justify-center"
+      class="container mx-auto px-4 md:px-12 lg:px-24 xl:px-48 flex flex-col items-center"
     >
       {
         author ? (
-          <div class="author-details ">
+          <>
             <img
               class="h-96 w-96 object-cover rounded-full"
               src={author.fields.potrait.fields.file.url}
               alt=""
             />
             <h1 class="text-gray-400 text-7xl mt-7">{author.fields.name}</h1>
-            <ShareComponent />
-          </div>
+            <ShareComponent
+              youtube={author.fields.youtube}
+              twitch={author.fields.twitch}
+              twitter={author.fields.twitter}
+              onlyFans={author.fields.onlyFans}
+              facebook={author.fields.facebook}
+              instagram={author.fields.instagram}
+            />
+          </>
         ) : (
           <p class="text-white">Author not found</p>
         )
       }
     </div>
+    <section
+      class="mt-10 related-posts mx-auto px-4 md:px-12 lg:px-24 xl:px-48"
+    >
+      {
+        posts.map((post) => (
+          <ul class="text-white">
+            <li>
+              <a
+                class="text-3xl text-[var(--secondary-100)]"
+                href={`/stories/${post.fields.slug}`}
+              >
+                {post.fields.title}
+              </a>
+              <p>{post.fields.description}</p>
+            </li>
+          </ul>
+        ))
+      }
+    </section>
   </section>
 </Layout>
