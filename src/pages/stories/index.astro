@@ -17,15 +17,19 @@ const entries = await contentfulClient.getEntries<Posts>({
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
-          entries.items.map((item) => (
+          entries.items.map((item) => {
+            const authorName =
+              item.fields.author?.fields?.name ?? "Autor desconocido";
+
+            return;
             <CardStories
               title={item.fields.title}
-              author={item.fields.author.fields?.name}
+              author={authorName}
               image={item.fields.heroImage.fields.file.url}
               description={item.fields.description}
               slug={item.fields.slug}
-            />
-          ))
+            />;
+          })
         }
       </div>
     </div>
