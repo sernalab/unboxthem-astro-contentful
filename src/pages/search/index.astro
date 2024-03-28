@@ -1,15 +1,48 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { contentfulClient } from "../../lib/contentful";
-import type { AuthorFields } from "../../lib/contentful";
+import type { Posts } from "../../lib/contentful";
 
-const entries = await contentfulClient.getEntries<AuthorFields>({
+const postEntries = await contentfulClient.getEntries<PostFields>({
+  content_type: "post",
+});
+
+const authorEntries = await contentfulClient.getEntries<AuthorFields>({
   content_type: "author",
 });
+
+const items = [
+  ...postEntries.items.map((item) => ({
+    type: "Post",
+    title: item.fields.title,
+    description: item.fields.description,
+    slug: item.fields.slug,
+  })),
+  ...authorEntries.items.map((item) => ({
+    type: "Author",
+    name: item.fields.name,
+    bio: item.fields.bio,
+    slug: item.fields.slug,
+  })),
+];
+
+console.log(items);
 ---
 
 <Layout title="Authors">
   <section class="search container mx-auto min-w-12">
     <h2 class="text-white">Search</h2>
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search posts and authors..."
+    />
+    <div id="searchResults"></div>
   </section>
+  <script type="application/json" id="itemsData">
+    {
+      JSON.stringify(items);
+    }
+  </script>
+  <script src="../../lib/search.js"></script>
 </Layout>
