@@ -3,11 +3,12 @@ import Layout from "../../layouts/Layout.astro";
 import CardStories from "../../components/CardStories.astro";
 
 import { contentfulClient } from "../../lib/contentful";
-import type { PostFields } from "../../lib/contentful";
+import type { PostFields, AuthorFields } from "../../lib/contentful";
 
 const entries = await contentfulClient.getEntries<PostFields>({
   content_type: "post",
 });
+
 ---
 
 <Layout title="Posts">
@@ -18,17 +19,19 @@ const entries = await contentfulClient.getEntries<PostFields>({
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
           entries.items.map((item) => {
-            const authorName =
-              item.fields.author?.fields?.name ?? "Autor desconocido";
-
-            return;
-            <CardStories
-              title={item.fields.title}
-              author={authorName}
-              image={item.fields.heroImage.fields.file.url}
-              description={item.fields.description}
-              slug={item.fields.slug}
-            />;
+            const authorEntry = item.fields.author as Entry<AuthorFields> | undefined;
+            const authorName = authorEntry?.fields?.name ?? "Autor desconocido";
+            const imageUrl = (item.fields.heroImage as ImageLink)?.fields?.file?.url ?? "DefaultImageUrlHere";
+        
+            return (
+              <CardStories
+                title={item.fields.title}
+                author={authorName}
+                image={imageUrl}
+                description={item.fields.description}
+                slug={item.fields.slug}
+              />
+            );
           })
         }
       </div>
