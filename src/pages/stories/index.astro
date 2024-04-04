@@ -3,9 +3,9 @@ import Layout from "../../layouts/Layout.astro";
 import CardStories from "../../components/CardStories.astro";
 
 import { contentfulClient } from "../../lib/contentful";
-import type { Posts } from "../../lib/contentful";
+import type { PostFields } from "../../lib/contentful";
 
-const entries = await contentfulClient.getEntries<Posts>({
+const entries = await contentfulClient.getEntries<PostFields>({
   content_type: "post",
 });
 ---

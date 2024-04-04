@@ -1,34 +1,40 @@
 import contentful from "contentful";
-import type { EntryFieldTypes } from 'contentful';
+import type { EntryFieldTypes, Entry } from 'contentful';
 
 
+interface imageLink {
+  title: string;
+  description: string;
+  file: {
+    url: string;
+  };
+}
 export interface AuthorFields {
   contentTypeId: "author"
   fields: {
-    name: EntryFieldTypes.Text,
-    slug: EntryFieldTypes.Text,
-    bio: EntryFieldTypes.Text,
-    potrait: EntryFieldTypes.AssetLink,
-    youtube: EntryFieldTypes.Text,
-    twitch: EntryFieldTypes.Text,
-    twitter: EntryFieldTypes.Text,
-    facebook: EntryFieldTypes.Text,
-    instagram: EntryFieldTypes.Text,
-    only_fans: EntryFieldTypes.Text,
+    name: string,
+    slug: string,
+    bio: string,
+    potrait: imageLink,
+    youtube: string,
+    twitch: string,
+    twitter: string,
+    facebook: string,
+    instagram: string,
+    only_fans: string,
   }
 }
-
 export interface PostFields {
   contentTypeId: "post",
   fields: {
-    title: EntryFieldTypes.Text,
-    slug: EntryFieldTypes.Text,
-    body: EntryFieldTypes.Text
-    heroImage: EntryFieldTypes.AssetLink,
-    description: EntryFieldTypes.Text,
-    publishDate: EntryFieldTypes.Date,
-    tags: EntryFieldTypes.Array<EntryFieldTypes.Symbol>,
-    author: EntryFieldTypes.EntryLink<AuthorFields>
+    title: string,
+    slug: string,
+    body: string
+    heroImage: imageLink,
+    description: string,
+    publishDate: string,
+    tags: string[],
+    author: AuthorFields
   }
 }
 
