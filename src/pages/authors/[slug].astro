@@ -26,11 +26,12 @@ const { slug } = Astro.params;
 const author = await getAuthorBySlug(slug);
 const posts = await getPostsByAuthorId(author?.sys.id);
 
-// console.log(author?.fields);
-console.log("posts fields", posts);
+const defaultImageUrl = "Image not found";
+
+const imageUrl = author?.fields?.portrait?.fields?.file?.url ?? defaultImageUrl;
 ---
 
-<Layout title={author ? author.fields.name : "Author not found"}>
+<Layout title={author?.fields.name ?? "Author not found"}>
   <section class="my-24">
     <div
       class="container mx-auto px-4 md:px-12 lg:px-24 xl:px-48 flex flex-col items-center"
@@ -40,8 +41,8 @@ console.log("posts fields", posts);
           <>
             <img
               class="h-96 w-96 object-cover rounded-full"
-              src={author.fields.potrait.fields.file.url}
-              alt=""
+              src={imageUrl}
+              alt="Auhtor potrait"
             />
             <h1 class="text-gray-400 text-7xl mt-7">{author.fields.name}</h1>
             <ShareComponent
