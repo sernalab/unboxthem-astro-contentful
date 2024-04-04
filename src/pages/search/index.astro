@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { contentfulClient } from "../../lib/contentful";
-import type { Posts } from "../../lib/contentful";
+import type { PostFields, AuthorFields  } from "../../lib/contentful";
 
 const postEntries = await contentfulClient.getEntries<PostFields>({
   content_type: "post",

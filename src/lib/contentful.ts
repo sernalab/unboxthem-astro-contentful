@@ -18,7 +18,7 @@ export interface AuthorFields {
   }
 }
 
-export interface Posts {
+export interface PostFields {
   contentTypeId: "post",
   fields: {
     title: EntryFieldTypes.Text,
