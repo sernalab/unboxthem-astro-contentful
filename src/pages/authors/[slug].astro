@@ -26,12 +26,13 @@ const { slug } = Astro.params;
 const author = await getAuthorBySlug(slug);
 const posts = await getPostsByAuthorId(author.sys.id);
 
-const defaultImageUrl = "Image not found";
-
-const imageUrl = author?.fields?.potrait?.fields?.file?.url ?? defaultImageUrl;
+const imageUrl =
+  author.fields.potrait && author.fields.potrait.fields.file.url
+    ? author?.fields?.potrait?.fields?.file?.url
+    : "no image";
 ---
 
-<Layout title={author?.fields.name ?? "Author not found"}>
+<Layout title={`${author?.fields.name ?? "Author not found"}`}>
   <section class="my-24">
     <div
       class="container mx-auto px-4 md:px-12 lg:px-24 xl:px-48 flex flex-col items-center"
