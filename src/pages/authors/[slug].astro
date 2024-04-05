@@ -28,7 +28,7 @@ const posts = await getPostsByAuthorId(author.sys.id);
 
 const defaultImageUrl = "Image not found";
 
-const imageUrl = author?.fields?.portrait?.fields?.file?.url ?? defaultImageUrl;
+const imageUrl = author?.fields?.potrait?.fields?.file?.url ?? defaultImageUrl;
 ---
 
 <Layout title={author?.fields.name ?? "Author not found"}>
