@@ -3,9 +3,8 @@ import Layout from "../../layouts/Layout.astro";
 import CardStories from "../../components/CardStories.astro";
 
 import { contentfulClient } from "../../lib/contentful";
-import type { PostFields, ImageLink } from "../../lib/contentful";
 
-const entries = await contentfulClient.getEntries<PostFields>({
+const entries = await contentfulClient.getEntries({
   content_type: "post",
 });
 ---
@@ -21,17 +20,17 @@ const entries = await contentfulClient.getEntries<PostFields>({
             const authorName =
               item.fields.author?.fields?.name ?? "Autor desconocido";
             const imageUrl =
-              (item.fields.heroImage as ImageLink)?.fields?.file?.url ??
-              "DefaultImageUrlHere";
+              item.fields.heroImage?.fields?.file?.url ?? "DefaultImageUrlHere";
 
-            return;
-            <CardStories
-              title={item.fields.title}
-              author={authorName}
-              image={imageUrl}
-              description={item.fields.description}
-              slug={item.fields.slug}
-            />;
+            return (
+              <CardStories
+                title={item.fields.title}
+                author={authorName}
+                image={imageUrl}
+                description={item.fields.description}
+                slug={item.fields.slug}
+              />
+            );
           })
         }
       </div>
