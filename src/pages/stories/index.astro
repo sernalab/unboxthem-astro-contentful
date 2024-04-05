@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import CardStories from "../../components/CardStories.astro";
 import { contentfulClient } from "../../lib/contentful";
+
 const entries = await contentfulClient.getEntries({
   content_type: "post",
 });
@@ -13,7 +14,7 @@ const entries = await contentfulClient.getEntries({
       <h1 class="text-gray-400 text-7xl mb-5">Trends</h1>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
-          entries.items.map((item) => {
+          entries.items.map((item: any) => {
             const authorName =
               item.fields.author?.fields?.name ?? "Autor desconocido";
             const imageUrl =

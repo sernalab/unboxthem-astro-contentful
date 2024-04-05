@@ -3,10 +3,10 @@ import type { EntryFieldTypes } from 'contentful';
 
 
 interface ContentfulAssetFields {
-  title: string;
-  description: string;
+  title: EntryFieldTypes.Text;
+  description: EntryFieldTypes.Text;
   file: {
-    url: string;
+    url: EntryFieldTypes.Text;
     details: {
       size: number;
       image: {
@@ -14,8 +14,8 @@ interface ContentfulAssetFields {
         height: number;
       };
     };
-    fileName: string;
-    contentType: string;
+    fileName: EntryFieldTypes.Text;
+    contentType: EntryFieldTypes.Text;
   };
 }
 
