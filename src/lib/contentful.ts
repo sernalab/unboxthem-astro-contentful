@@ -1,31 +1,17 @@
 import contentful from "contentful";
-import type { EntryFieldTypes, Entry } from 'contentful';
+import type { EntryFieldTypes } from 'contentful';
 
 
-interface ContentfulAssetFields {
-  title: EntryFieldTypes.Text;
-  description: EntryFieldTypes.Text;
-  file: {
-    url: EntryFieldTypes.Text;
-    details: {
-      size: number;
-      image: {
-        width: number;
-        height: number;
-      };
-    };
-    fileName: EntryFieldTypes.Text;
-    contentType: EntryFieldTypes.Text;
+interface Asset {
+  sys: { id: string };
+  fields: { 
+    file: { 
+      url: string;
+      details?: any;
+      fileName?: string;
+      contentType?: string;
+    }; 
   };
-}
-
-type ContentfulAsset = ContentfulAssetFields;
-
-export interface ImageLink {
-  sys: {
-    id: string;
-  };
-  fields: ContentfulAssetFields; // Aquí se debería utilizar ContentfulAssetFields directamente
 }
 
 export interface AuthorFields {
@@ -34,7 +20,7 @@ export interface AuthorFields {
     name: EntryFieldTypes.Text,
     slug: EntryFieldTypes.Text,
     bio: EntryFieldTypes.Text,
-    potrait: ContentfulAsset;
+    potrait: Asset,
     youtube: EntryFieldTypes.Text,
     twitch: EntryFieldTypes.Text,
     twitter: EntryFieldTypes.Text,
@@ -49,7 +35,7 @@ export interface PostFields {
     title: EntryFieldTypes.Text,
     slug: EntryFieldTypes.Text,
     body: EntryFieldTypes.Text
-    heroImage: ContentfulAsset,
+    heroImage: Asset,
     description: EntryFieldTypes.Text,
     publishDate: EntryFieldTypes.Date,
     tags: EntryFieldTypes.Array<EntryFieldTypes.Symbol>,
