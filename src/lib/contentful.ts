@@ -1,5 +1,5 @@
 import contentful from "contentful";
-import type { EntryFieldTypes } from 'contentful';
+import type { EntryFieldTypes, Entry } from 'contentful';
 
 
 interface ContentfulAssetFields {
@@ -19,7 +19,7 @@ interface ContentfulAssetFields {
   };
 }
 
-type ContentfulAsset = Entry<ContentfulAssetFields>;
+type ContentfulAsset = ContentfulAssetFields;
 
 export interface ImageLink {
   sys: {
