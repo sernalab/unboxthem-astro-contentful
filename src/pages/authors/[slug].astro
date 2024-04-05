@@ -2,6 +2,7 @@
 import ShareComponent from "../../components/ShareComponent.astro";
 import Layout from "../../layouts/Layout.astro";
 import { contentfulClient } from "../../lib/contentful";
+import type { Asset } from "../../lib/contentful";
 
 async function getAuthorBySlug(slug: string) {
   const entries = await contentfulClient.getEntries({
@@ -26,10 +27,11 @@ const { slug } = Astro.params;
 const author = await getAuthorBySlug(slug);
 const posts = await getPostsByAuthorId(author.sys.id);
 
-const imageUrl =
-  author.fields.potrait && author.fields.potrait.fields.file.url
-    ? author?.fields?.potrait?.fields?.file?.url
-    : "no image";
+const defaultImageUrl = "NO IMAGE";
+
+const imageUrl = author?.fields?.portrait
+  ? (author.fields.portrait as Asset).fields.file.url
+  : defaultImageUrl;
 ---
 
 <Layout title={`${author?.fields.name ?? "Author not found"}`}>
