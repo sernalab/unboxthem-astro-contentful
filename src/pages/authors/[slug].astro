@@ -3,7 +3,7 @@ import ShareComponent from "../../components/ShareComponent.astro";
 import Layout from "../../layouts/Layout.astro";
 import { contentfulClient } from "../../lib/contentful";
 
-async function getAuthorBySlug(slug: string) {
+async function getAuthorBySlug(slug) {
   const entries = await contentfulClient.getEntries({
     content_type: "author",
     "fields.slug": slug,
@@ -13,7 +13,7 @@ async function getAuthorBySlug(slug: string) {
   return entries.items.length > 0 ? entries.items[0] : null;
 }
 
-async function getPostsByAuthorId(authorId: string) {
+async function getPostsByAuthorId(authorId) {
   const entries = await contentfulClient.getEntries({
     content_type: "post",
     "fields.author.sys.id": authorId,
@@ -24,7 +24,7 @@ async function getPostsByAuthorId(authorId: string) {
 
 const { slug } = Astro.params;
 const author = await getAuthorBySlug(slug);
-const posts = await getPostsByAuthorId(author.sys.id);
+const posts = await getPostsByAuthorId(author?.sys.id);
 
 const defaultImageUrl = "Image not found";
 
