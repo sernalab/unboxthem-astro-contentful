@@ -2,7 +2,7 @@ import contentful from "contentful";
 import type { EntryFieldTypes } from 'contentful';
 
 
-interface Asset {
+export interface Asset {
   sys: { id: string };
   fields: { 
     file: { 
