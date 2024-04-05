@@ -1,13 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { contentfulClient } from "../../lib/contentful";
-import type { AuthorFields } from "../../lib/contentful";
 
 const entries = await contentfulClient.getEntries<AuthorFields>({
   content_type: "author",
 });
-
-entries.items.forEach((item) => console.log(item.fields));
 ---
 
 <Layout title="Authors">
