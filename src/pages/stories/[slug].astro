@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import ShareComponent from "../../components/ShareComponent.astro";
 
 import { contentfulClient } from "../../lib/contentful";
+import type { Asset } from "../../lib/contentful";
 
 async function getPostBySlug(slug) {
   const entries = await contentfulClient.getEntries({
@@ -16,6 +17,10 @@ async function getPostBySlug(slug) {
 
 const { slug } = Astro.params;
 const post = await getPostBySlug(slug);
+
+const heroImageUrl = post
+  ? (post.fields.heroImage as Asset).fields.file.url
+  : "";
 ---
 
 <Layout title="Posts">
@@ -24,7 +29,7 @@ const post = await getPostBySlug(slug);
       <figure class="">
         <img
           class="rounded-xl mx-auto aspect-video object-cover"
-          src={post?.fields.heroImage.fields.file.url}
+          src={heroImageUrl}
           alt=""
         />
         <figcaption class="text-white pt-2">Credits: @pepito</figcaption>
