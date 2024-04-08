@@ -32,8 +32,6 @@ const defaultImageUrl =
 
 const imageUrl =
   (author?.fields?.potrait as Asset)?.fields?.file?.url ?? defaultImageUrl;
-
-console.log("imageUrl", imageUrl);
 ---
 
 <Layout title={`${author?.fields.name ?? "Author not found"}`}>

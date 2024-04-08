@@ -1,7 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { contentfulClient } from "../../lib/contentful";
-import type { AuthorFields } from "../../lib/contentful";
 
 const entries = await contentfulClient.getEntries<AuthorFields>({
   content_type: "author",
@@ -16,7 +15,7 @@ entries.items.forEach((item) => console.log(item.fields));
       <h1 class="text-gray-400 text-7xl mb-5">Performers</h1>
       <div class="clear-both relative">
         <div
-          class="grid flex-wrap items-start grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 portfolio gap-8"
+          class="grid flex-wrap items-start grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 portfolio"
         >
           {
             entries.items.map((item: any) => (

@@ -21,6 +21,12 @@ const post = await getPostBySlug(slug);
 const heroImageUrl = post
   ? (post.fields.heroImage as Asset).fields.file.url
   : "";
+
+const authorURL = post ? (post.fields.author as Asset)?.fields.slug : "";
+
+const authorName = post ? (post.fields.author as Asset)?.fields.name : "";
+
+console.log("dentro de author", post.fields.author);
 ---
 
 <Layout title="Posts">
@@ -42,10 +48,10 @@ const heroImageUrl = post
               <div class="text-white">
                 <p class="my-10 tracking-wide leading-7">{post.fields.body}</p>
                 <a
-                  href={`/authors/${post.fields.author.fields.slug}`}
+                  href={`/authors/${authorURL}`}
                   class="text-[var(--secondary-100)] text-4xl"
                 >
-                  {post.fields.author.fields.name}
+                  {authorName}
                 </a>
               </div>
             </div>

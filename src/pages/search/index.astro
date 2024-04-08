@@ -1,13 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { contentfulClient } from "../../lib/contentful";
-import type { PostFields, AuthorFields  } from "../../lib/contentful";
+import type { BlogPost, Author  } from "../../lib/contentful";
 
-const postEntries = await contentfulClient.getEntries<PostFields>({
+const postEntries = await contentfulClient.getEntries<BlogPost>({
   content_type: "post",
 });
 
-const authorEntries = await contentfulClient.getEntries<AuthorFields>({
+const authorEntries = await contentfulClient.getEntries<Author>({
   content_type: "author",
 });
 
@@ -26,7 +26,7 @@ const items = [
   })),
 ];
 
-console.log(items);
+// console.log(items);
 ---
 
 <Layout title="Authors">

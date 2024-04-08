@@ -1,8 +1,8 @@
 import contentful from "contentful";
 
 export interface Author {
-  name?: string;
-  slug?: string;
+  name: string;
+  slug: string;
   bio?: string;
   potrait?: Asset;
   youtube?: string;
@@ -33,7 +33,7 @@ export interface BlogPost {
   description?: string;
   publishDate?: string;
   tags?: string;
-  author: EntryLink;
+  author: Author;
 }
 export interface EntryLink {
   type: string;
