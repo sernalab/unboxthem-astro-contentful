@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import ShareComponent from "../../components/ShareComponent.astro";
 
 import { contentfulClient } from "../../lib/contentful";
-import type { Asset } from "../../lib/contentful";
+import type { Asset, BlogPost } from "../../lib/contentful";
 
 async function getPostBySlug(slug) {
   const entries = await contentfulClient.getEntries({
@@ -22,9 +22,8 @@ const heroImageUrl = post
   ? (post.fields.heroImage as Asset).fields.file.url
   : "";
 
-const authorURL = post ? post.fields.author.fields.slug : "";
-
-const authorName = post ? post.fields.author.fields.name : "";
+const authorURL = post?.fields.author?.fields.slug as string;
+const authorName = post?.fields.author?.fields.name as string;
 
 console.log("dentro de author", post.fields.author);
 ---

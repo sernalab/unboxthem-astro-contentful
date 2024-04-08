@@ -6,8 +6,6 @@ import type { Author } from "../../lib/contentful";
 const entries = await contentfulClient.getEntries<Author>({
   content_type: "author",
 });
-
-entries.items.forEach((item) => console.log(item.fields));
 ---
 
 <Layout title="Authors">
