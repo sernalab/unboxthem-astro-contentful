@@ -1,4 +1,5 @@
 import contentful from "contentful";
+import type {EntryFieldTypes} from "contentful"
 
 export interface Author {
   contentTypeId: "author"
@@ -31,14 +32,14 @@ export interface Asset {
 export interface BlogPost {
   contentTypeId: "post",
   fields: {
-    title?: string;
-    slug?: string;
-    body?: string;
-    heroImage?: Asset;
-    description?: string;
-    publishDate?: string;
-    tags?: string;
-    author: Author;
+    title?: string,
+    slug?: string,
+    body?: string,
+    heroImage?: Asset,
+    description?: string,
+    publishDate?: string,
+    tags?: string,
+    author: Author,
   }
 }
 export interface EntryLink {
@@ -48,7 +49,7 @@ export interface EntryLink {
 }
 
 
-// export interface Asset {
+// export interface AssetField {
 //   sys: { id: string };
 //   fields: { 
 //     file: { 
@@ -66,7 +67,7 @@ export interface EntryLink {
 //     name: EntryFieldTypes.Text,
 //     slug: EntryFieldTypes.Text,
 //     bio: EntryFieldTypes.Text,
-//     potrait: Asset,
+//     potrait: AssetField,
 //     youtube: EntryFieldTypes.Text,
 //     twitch: EntryFieldTypes.Text,
 //     twitter: EntryFieldTypes.Text,
@@ -81,7 +82,7 @@ export interface EntryLink {
 //     title: EntryFieldTypes.Text,
 //     slug: EntryFieldTypes.Text,
 //     body: EntryFieldTypes.Text
-//     heroImage: Asset,
+//     heroImage: AssetField,
 //     description: EntryFieldTypes.Text,
 //     publishDate: EntryFieldTypes.Date,
 //     tags: EntryFieldTypes.Array<EntryFieldTypes.Symbol>,

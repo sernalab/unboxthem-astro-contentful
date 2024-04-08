@@ -1,8 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { contentfulClient } from "../../lib/contentful";
+import type { Author } from "../../lib/contentful";
 
-const entries = await contentfulClient.getEntries<AuthorFields>({
+const entries = await contentfulClient.getEntries<Author>({
   content_type: "author",
 });
 

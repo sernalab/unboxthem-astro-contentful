@@ -22,9 +22,9 @@ const heroImageUrl = post
   ? (post.fields.heroImage as Asset).fields.file.url
   : "";
 
-const authorURL = post ? (post.fields.author as Asset)?.fields.slug : "";
+const authorURL = post ? post.fields.author.fields.slug : "";
 
-const authorName = post ? (post.fields.author as Asset)?.fields.name : "";
+const authorName = post ? post.fields.author.fields.name : "";
 
 console.log("dentro de author", post.fields.author);
 ---
