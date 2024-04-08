@@ -1,16 +1,19 @@
 import contentful from "contentful";
 
 export interface Author {
-  name: string;
-  slug: string;
-  bio?: string;
-  potrait?: Asset;
-  youtube?: string;
-  twitch?: string;
-  twitter?: string;
-  onlyFans?: string;
-  facebook?: string;
-  instagram?: string;
+  contentTypeId: "author"
+  fields:{
+    name: string;
+    slug: string;
+    bio?: string;
+    potrait?: Asset;
+    youtube?: string;
+    twitch?: string;
+    twitter?: string;
+    onlyFans?: string;
+    facebook?: string;
+    instagram?: string;
+  }  
 }
 export interface Asset {
   sys: { id: string };
@@ -26,14 +29,17 @@ export interface Asset {
   };
 }
 export interface BlogPost {
-  title?: string;
-  slug?: string;
-  body?: string;
-  heroImage?: Asset;
-  description?: string;
-  publishDate?: string;
-  tags?: string;
-  author: Author;
+  contentTypeId: "post",
+  fields: {
+    title?: string;
+    slug?: string;
+    body?: string;
+    heroImage?: Asset;
+    description?: string;
+    publishDate?: string;
+    tags?: string;
+    author: Author;
+  }
 }
 export interface EntryLink {
   type: string;
