@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import ShareComponent from "../../components/ShareComponent.astro";
 
 import { contentfulClient } from "../../lib/contentful";
-import type { Asset, BlogPost } from "../../lib/contentful";
+import type { Asset, Author } from "../../lib/contentful";
 
 async function getPostBySlug(slug) {
   const entries = await contentfulClient.getEntries({
@@ -22,10 +22,10 @@ const heroImageUrl = post
   ? (post.fields.heroImage as Asset).fields.file.url
   : "";
 
-// eslint-disable-next-line regla-especifica
-const authorURL = post?.fields.author?.fields.slug as string;
-// eslint-disable-next-line regla-especifica
-const authorName = post?.fields.author?.fields.name as string;
+const authorURL = (post?.fields.author as unknown as Author)?.fields.slug ?? "";
+
+const authorName =
+  (post?.fields.author as unknown as Author)?.fields.name ?? "";
 
 console.log("dentro de author", post.fields.author);
 ---
