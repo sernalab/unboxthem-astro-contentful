@@ -22,7 +22,9 @@ const heroImageUrl = post
   ? (post.fields.heroImage as Asset).fields.file.url
   : "";
 
+// eslint-disable-next-line regla-especifica
 const authorURL = post?.fields.author?.fields.slug as string;
+// eslint-disable-next-line regla-especifica
 const authorName = post?.fields.author?.fields.name as string;
 
 console.log("dentro de author", post.fields.author);
